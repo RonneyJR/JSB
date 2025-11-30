@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FIFA World Cup 2026 - Canada, Mexico, USA - Lễ hội bóng đá toàn cầu">
+    <title>FIFA World Cup 2026 - Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0F5E5E;
+            --primary-darker: #030712;
+            --accent-cyan: #06B6D4;
+            --accent-blue: #0EA5E9;
+            --white: #F8F8F8;
+            --text-light: #F9FAFB;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-darker);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 94, 94, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-cyan);
+            padding: 1rem 0;
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-box {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: white;
+        }
+
+        .logo-year {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: white;
+        }
+
+        .navbar-menu {
+            display: none;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .navbar-menu.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background-color: var(--primary-dark);
+            padding: 2rem;
+            gap: 1rem;
+        }
+
+        .navbar-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+        }
+
+        .navbar-menu a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--accent-cyan);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .navbar-socials {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-blue);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            margin-top: 70px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a4d4d 50%, var(--primary-darker) 100%);
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 7, 18, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--accent-cyan);
+            margin-bottom: 3rem;
+            letter-spacing: 0.15em;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown-item {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid var(--accent-cyan);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-cyan);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.5);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 6rem 2rem;
+            background-color: var(--primary-darker);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(180deg, rgba(15, 94, 94, 0.1) 0%, var(--primary-darker) 100%);
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--accent-cyan);
+            margin-bottom: 3rem;
+            font-size: 1.125rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .about-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(6, 182, 212, 0.05);
+            border: 2px solid var(--accent-cyan);
+            padding: 2rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(6, 182, 212, 0.15);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== SCHEDULE ===== */
+        .schedule-timeline {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .schedule-timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-cyan);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-cyan);
+            border: 3px solid var(--primary-darker);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 0.5rem;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+            background: rgba(15, 94, 94, 0.3);
+            border-left: 2px solid var(--accent-blue);
+            border-radius: 0.25rem;
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--accent-blue);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* ===== STADIUMS ===== */
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            border-radius: 0.25rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-cyan);
+            color: var(--primary-darker);
+        }
+
+        .stadiums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .stadium-card {
+            background: rgba(15, 94, 94, 0.3);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .stadium-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
+            border-color: var(--accent-blue);
+        }
+
+        .stadium-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .stadium-info {
+            padding: 1.5rem;
+        }
+
+        .stadium-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .stadium-city {
+            color: var(--accent-blue);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stadium-country {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* ===== TEAMS ===== */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: rgba(15, 94, 94, 0.3);
+            border: 2px solid var(--accent-cyan);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            background: rgba(6, 182, 212, 0.15);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.25);
+        }
+
+        .team-flag {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-stat {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* ===== PLAYERS ===== */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .player-card {
+            background: rgba(15, 94, 94, 0.3);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .player-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.25);
+            border-color: var(--accent-blue);
+        }
+
+        .player-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: 700;
+        }
+
+        .player-info {
+            padding: 1.5rem;
+        }
+
+        .player-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .player-club {
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .player-country {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .player-description {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        /* ===== INNOVATIONS ===== */
+        .innovations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .innovation-card {
+            background: rgba(15, 94, 94, 0.3);
+            border: 2px solid var(--accent-cyan);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .innovation-card:hover {
+            transform: translateY(-8px);
+            background: rgba(6, 182, 212, 0.15);
+            box-shadow: 0 15px 35px rgba(6, 182, 212, 0.25);
+        }
+
+        .innovation-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        .innovation-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .innovation-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== FOOTER ===== */
+        .sponsors-footer {
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 2px solid var(--accent-cyan);
+        }
+
+        .sponsors-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            align-items: center;
+        }
+
+        .sponsor-logo {
+            background: rgba(6, 182, 212, 0.1);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border: 2px solid var(--accent-cyan);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            border-top: 2px solid var(--accent-cyan);
+            padding-top: 2rem;
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .footer-links span {
+            color: var(--accent-cyan);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar-socials {
+                display: none;
+            }
+
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .schedule-timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item {
+                gap: 1rem;
+            }
+
+            .timeline-dot {
+                width: 30px;
+                height: 30px;
+            }
+
+            .timeline-content {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-logo">
+            <div class="logo-box">
+                <div class="logo-text">⚽ FIFA</div>
+                <div class="logo-year">2026</div>
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="navbar-menu" id="navMenu">
+            <li><a href="#about">Giới Thiệu</a></li>
+            <li><a href="#schedule">Lịch Thi Đấu</a></li>
+            <li><a href="#stadiums">Sân Vận Động</a></li>
+            <li><a href="#teams">Các Đội</a></li>
+            <li><a href="#players">Cầu Thủ</a></li>
+            <li><a href="#innovations">Thay Đổi Mới</a></li>
+        </ul>
+        <div class="navbar-socials">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">𝕏</a>
+            <a href="#" class="social-icon">📷</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">FIFA WORLD CUP 2026</h1>
+        <p class="hero-subtitle">Canada • Mexico • United States</p>
+        
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-value" id="days">0</span>
+                <span class="countdown-label">NGÀY</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-value" id="hours">0</span>
+                <span class="countdown-label">GIỜ</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-value" id="minutes">0</span>
+                <span class="countdown-label">PHÚT</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-value" id="seconds">0</span>
+                <span class="countdown-label">GIÂY</span>
+            </div>
+        </div>
+
+        <button class="cta-button">KHÁM PHÁ GIẢI ĐẤU</button>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="section">
+    <div class="section-container">
+        <h2 class="section-title">Giới Thiệu World Cup 2026</h2>
+        <p class="section-subtitle">Lễ hội bóng đá quy mô thế giới lớn nhất trong lịch sử</p>
+        
+        <div class="about-content">
+            <p class="about-text">
+                FIFA World Cup 2026 sẽ là sự kiện bóng đá lớn nhất trong lịch sử của giải đấu. Lần đầu tiên, giải vô địch được mở rộng từ 32 lên 48 đội tuyển, mang lại cơ hội cho nhiều quốc gia hơn để tham gia và cạnh tranh trên sân cỏ toàn cầu.
+            </p>
+            <p class="about-text">
+                Với 104 trận đấu được tổ chức tại 16 thành phố khác nhau, giải đấu này hứa hẹn sẽ là một cuộc lễ hội bóng đá vô cùng rực rỡ và đầy kịch tính, mang đến những khoảnh khắc không thể quên cho hàng triệu người hâm mộ trên toàn thế giới.
+            </p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">48</div>
+                <div class="stat-label">ĐỘI TUYỂN</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">104</div>
+                <div class="stat-label">TRẬN ĐẤU</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">16</div>
+                <div class="stat-label">THÀNH PHỐ</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">39</div>
+                <div class="stat-label">NGÀY</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SCHEDULE SECTION -->
+<section id="schedule" class="section">
+    <div class="section-container">
+        <h2 class="section-title">Lịch Thi Đấu</h2>
+        <p class="section-subtitle">Từng giai đoạn của World Cup 2026</p>
+        
+        <div class="schedule-timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Vòng Bảng</div>
+                    <div class="timeline-date">11 - 27 Tháng 6, 2026</div>
+                    <div class="timeline-description">80 trận đấu, mỗi đội chơi 3 trận để xác định những đội vượt qua vòng bảng</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Vòng Loại Trực Tiếp</div>
+                    <div class="timeline-date">28 Tháng 6 - 9 Tháng 7</div>
+                    <div class="timeline-description">Vòng 1/32, 1/16, Tứ kết - Tiếp tục loại bỏ để tìm ra 4 đội vào bán kết</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Bán Kết</div>
+                    <div class="timeline-date">14 & 15 Tháng 7, 2026</div>
+                    <div class="timeline-description">Sân Mercedes-Benz (Atlanta) & AT&T Stadium (Dallas) - 2 trận để xác định 2 đội vào chung kết</div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-title">Chung Kết</div>
+                    <div class="timeline-date">19 Tháng 7, 2026</div>
+                    <div class="timeline-description">Sân MetLife Stadium, New York/New Jersey - Trận chung kết vô địch</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STADIUMS SECTION -->
+<section id="stadiums" class="section">
+    <div class="section-container">
+        <h2 class="section-title">16 Sân Vận Động</h2>
+        <p class="section-subtitle">Các sân vận động chủ nhà của World Cup 2026</p>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-country="all">TẤT CẢ</button>
+            <button class="filter-btn" data-country="canada">CANADA</button>
+            <button class="filter-btn" data-country="mexico">MEXICO</button>
+            <button class="filter-btn" data-country="usa">USA</button>
+        </div>
+
+        <div class="stadiums-grid" id="stadiumsGrid">
+            <!-- Generated by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- TEAMS SECTION -->
+<section id="teams" class="section">
+    <div class="section-container">
+        <h2 class="section-title">Các Đội Bóng Mạnh</h2>
+        <p class="section-subtitle">Lịch sử và thành tích của 8 đội hàng đầu</p>
+        
+        <div class="teams-grid" id="teamsGrid">
+            <!-- Generated by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- PLAYERS SECTION -->
+<section id="players" class="section">
+    <div class="section-container">
+        <h2 class="section-title">Cầu Thủ Tiềm Năng</h2>
+        <p class="section-subtitle">Những sao sáng sẽ tỏa sáng tại World Cup 2026</p>
+        
+        <div class="players-grid" id="playersGrid">
+            <!-- Generated by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- INNOVATIONS SECTION -->
+<section id="innovations" class="section">
+    <div class="section-container">
+        <h2 class="section-title">Thay Đổi Mới Lạ</h2>
+        <p class="section-subtitle">Những điểm khác biệt so với các kỳ World Cup trước</p>
+        
+        <div class="innovations-grid" id="innovationsGrid">
+            <!-- Generated by JS -->
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="sponsors-footer">
+    <div class="section-container">
+        <div class="sponsors-title">ĐỐI TÁC CHÍNH THỨC</div>
+        <div class="sponsors-grid">
+            <div class="sponsor-logo">ADIDAS</div>
+            <div class="sponsor-logo">NIKE</div>
+            <div class="sponsor-logo">PUMA</div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">© 2026 FIFA. Tất cả quyền được bảo lưu.</div>
+            <div class="footer-links">
+                <a href="#">Chính Sách Bảo Mật</a>
+                <span>•</span>
+                <a href="#">Điều Khoản Dịch Vụ</a>
+                <span>•</span>
+                <a href="#">Liên Hệ</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // ===== COUNTDOWN TIMER =====
+    function updateCountdown() {
+        const targetDate = new Date('2026-06-11T00:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ===== MOBILE MENU TOGGLE =====
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // ===== STADIUMS DATA =====
+    const stadiums = [
+        { name: 'BMO Field', city: 'Toronto', country: 'Canada', flag: '🇨🇦', emoji: '🏟️' },
+        { name: 'BC Place', city: 'Vancouver', country: 'Canada', flag: '🇨🇦', emoji: '🏟️' },
+        { name: 'Estadio Azteca', city: 'Mexico City', country: 'Mexico', flag: '🇲🇽', emoji: '🏟️' },
+        { name: 'Estadio BBVA', city: 'Monterrey', country: 'Mexico', flag: '🇲🇽', emoji: '🏟️' },
+        { name: 'Estadio Akron', city: 'Guadalajara', country: 'Mexico', flag: '🇲🇽', emoji: '🏟️' },
+        { name: 'MetLife Stadium', city: 'New York/NJ', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'AT&T Stadium', city: 'Dallas', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'Mercedes-Benz Stadium', city: 'Atlanta', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'SoFi Stadium', city: 'Los Angeles', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'NRG Stadium', city: 'Houston', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'Arrowhead Stadium', city: 'Kansas City', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'Gillette Stadium', city: 'Boston', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'Lincoln Financial Field', city: 'Philadelphia', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'Levi\'s Stadium', city: 'San Jose', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'Lumen Field', city: 'Seattle', country: 'USA', flag: '🇺🇸', emoji: '🏟️' },
+        { name: 'Hard Rock Stadium', city: 'Miami', country: 'USA', flag: '🇺🇸', emoji: '🏟️' }
+    ];
+
+    function renderStadiums(filter = 'all') {
+        const stadiumsGrid = document.getElementById('stadiumsGrid');
+        stadiumsGrid.innerHTML = '';
+
+        const filtered = filter === 'all' ? stadiums : stadiums.filter(s => s.country.toLowerCase() === filter);
+
+        filtered.forEach(stadium => {
+            const card = document.createElement('div');
+            card.className = 'stadium-card';
+            card.innerHTML = `
+                <div class="stadium-image">${stadium.emoji}</div>
+                <div class="stadium-info">
+                    <div class="stadium-name">${stadium.name}</div>
+                    <div class="stadium-city">${stadium.city}</div>
+                    <div class="stadium-country">${stadium.flag} ${stadium.country}</div>
+                </div>
+            `;
+            stadiumsGrid.appendChild(card);
+        });
+    }
+
+    // ===== TEAMS DATA =====
+    const teams = [
+        { name: 'Brazil', flag: '🇧🇷', wins: '5 lần vô địch', best: 'Vô địch năm 2002', history: 'Đội bóng huyền thoại' },
+        { name: 'Argentina', flag: '🇦🇷', wins: '3 lần vô địch', best: 'Vô địch năm 2022', history: 'Nhà vô địch hiện tại' },
+        { name: 'France', flag: '🇫🇷', wins: '2 lần vô địch', best: 'Vô địch năm 2018', history: 'Nhà vô địch kỳ trước' },
+        { name: 'Germany', flag: '🇩🇪', wins: '4 lần vô địch', best: 'Vô địch năm 2014', history: 'Đội bóng hàng top' },
+        { name: 'England', flag: '🇬🇧', wins: '1 lần vô địch', best: 'Vô địch năm 1966', history: 'Đất nước của bóng đá' },
+        { name: 'Spain', flag: '🇪🇸', wins: '1 lần vô địch', best: 'Vô địch năm 2010', history: 'Tiki-taka huyền thoại' },
+        { name: 'Belgium', flag: '🇧🇪', wins: 'Chưa', best: 'Hạng 3 năm 2018', history: 'Thế hệ vàng' },
+        { name: 'Netherlands', flag: '🇳🇱', wins: 'Chưa', best: 'Hạng 2 năm 2014', history: 'Bóng đá tấn công' }
+    ];
+
+    function renderTeams() {
+        const teamsGrid = document.getElementById('teamsGrid');
+        teams.forEach(team => {
+            const card = document.createElement('div');
+            card.className = 'team-card';
+            card.innerHTML = `
+                <div class="team-flag">${team.flag}</div>
+                <div class="team-name">${team.name}</div>
+                <div class="team-stat"><strong>Chức vô địch:</strong> ${team.wins}</div>
+                <div class="team-stat"><strong>Thành tích:</strong> ${team.best}</div>
+                <div class="team-stat">${team.history}</div>
+            `;
+            teamsGrid.appendChild(card);
+        });
+    }
+
+    // ===== PLAYERS DATA =====
+    const players = [
+        { name: 'Kylian Mbappé', country: '🇫🇷 France', club: 'Real Madrid', pos: 'Forward', desc: 'Siêu sao trẻ, tốc độ chóng mặt, ứng cử viên hàng đầu Quả bóng vàng' },
+        { name: 'Jude Bellingham', country: '🇬🇧 England', club: 'Real Madrid', pos: 'Midfielder', desc: 'Sao trẻ tài ba, trụ cột đội tuyển Anh, tiềm năng vô hạn' },
+        { name: 'Vinícius Júnior', country: '🇧🇷 Brazil', club: 'Real Madrid', pos: 'Forward', desc: 'Tiền vệ trái kỹ năng điêu luyện, tốc độ cực nhanh' },
+        { name: 'Florian Wirtz', country: '🇩🇪 Germany', club: 'Bayer Leverkusen', pos: 'Forward', desc: 'Sao trẻ Đức chơi bóng sáng tạo, có thể dứt khoát' },
+        { name: 'Pedri', country: '🇪🇸 Spain', club: 'Barcelona', pos: 'Midfielder', desc: 'Tiền vệ kỹ thuật cao, cách chuyển bóng góp phần tạo tấn công' },
+        { name: 'Rodri', country: '🇪🇸 Spain', club: 'Manchester City', pos: 'Midfielder', desc: 'Quả bóng vàng 2024, tiền vệ phòng thủ xuất sắc nhất thế giới' },
+        { name: 'Neymar', country: '🇧🇷 Brazil', club: 'Al-Hilal', pos: 'Forward', desc: 'Ngôi sao hàng đầu Brazil, lão tướng của đội tuyển' },
+        { name: 'Harry Kane', country: '🇬🇧 England', club: 'Bayern Munich', pos: 'Striker', desc: 'Tiền đạo kinh nghiệm, ghi bàn chính xác, lão làng' }
+    ];
+
+    function renderPlayers() {
+        const playersGrid = document.getElementById('playersGrid');
+        players.forEach(player => {
+            const card = document.createElement('div');
+            card.className = 'player-card';
+            card.innerHTML = `
+                <div class="player-image">⚽</div>
+                <div class="player-info">
+                    <div class="player-name">${player.name}</div>
+                    <div class="player-country">${player.country}</div>
+                    <div class="player-club"><strong>CLB:</strong> ${player.club}</div>
+                    <div class="player-description">${player.desc}</div>
+                </div>
+            `;
+            playersGrid.appendChild(card);
+        });
+    }
+
+    // ===== INNOVATIONS DATA =====
+    const innovations = [
+        { num: '1', title: 'Mở rộng lên 48 đội', desc: 'Lần đầu tiên World Cup có 48 đội tuyển tham dự thay vì 32 đội, tạo cơ hội cho nhiều quốc gia' },
+        { num: '2', title: 'Ba nước chủ nhà', desc: 'Lần đầu tiên được tổ chức tại ba quốc gia: Canada, Mexico và Hoa Kỳ' },
+        { num: '3', title: '104 trận đấu', desc: 'Tổng cộng 104 trận đấu thay vì 64 trận, làm cho giải đấu kéo dài lâu hơn' },
+        { num: '4', title: 'Cải tiến VAR', desc: 'Công nghệ VAR được nâng cấp để có những quyết định công bằng hơn' },
+        { num: '5', title: 'Vòng bảng mở rộng', desc: 'Với 48 đội, vòng bảng được chia thành 12 bảng, mỗi bảng 4 đội' },
+        { num: '6', title: 'Thời biểu linh hoạt', desc: 'Lịch thi đấu được xếp xỉ để tối ưu hóa thời gian và cơ hội cho tất cả đội' }
+    ];
+
+    function renderInnovations() {
+        const innovationsGrid = document.getElementById('innovationsGrid');
+        innovations.forEach(innovation => {
+            const card = document.createElement('div');
+            card.className = 'innovation-card';
+            card.innerHTML = `
+                <div class="innovation-number">${innovation.num}</div>
+                <div class="innovation-title">${innovation.title}</div>
+                <div class="innovation-description">${innovation.desc}</div>
+            `;
+            innovationsGrid.appendChild(card);
+        });
+    }
+
+    // ===== STADIUM FILTER =====
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const country = this.dataset.country;
+            renderStadiums(country);
+        });
+    });
+
+    // ===== INITIALIZE ALL SECTIONS =====
+    renderStadiums();
+    renderTeams();
+    renderPlayers();
+    renderInnovations();
+</script>
+
+</body>
+</html>
